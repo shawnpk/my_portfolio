@@ -34,6 +34,12 @@ class PortfoliosController < ApplicationController
     end
   end
 
+  def destroy
+    @portfolio_item.destroy
+    flash[:notice] = 'Your portfolio item has been deleted'
+    redirect_to portfolios_path
+  end
+
   private
     def set_portfolio
       @portfolio_item = Portfolio.find(params[:id])
