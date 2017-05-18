@@ -1,6 +1,10 @@
 class PortfoliosController < ApplicationController
+  before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
   def index
     @portfolio_items = Portfolio.all
+  end
+
+  def show
   end
 
   def new
@@ -8,7 +12,6 @@ class PortfoliosController < ApplicationController
   end
 
   def edit
-    @portfolio_item = Portfolio.find(params[:id])
   end
 
   def create
@@ -23,8 +26,6 @@ class PortfoliosController < ApplicationController
   end
 
   def update
-    @portfolio_item = Portfolio.find(params[:id])
-
     if @portfolio_item.update(params.require(:portfolio).permit(:title, :subtitle, :body))
       flash[:notice] = 'Your portfolio item has been updated'
       redirect_to portfolios_path
@@ -32,4 +33,9 @@ class PortfoliosController < ApplicationController
       render :edit
     end
   end
+
+  private
+    def set_portfolio
+      @portfolio_item = Portfolio.find(params[:id])
+    end
 end
