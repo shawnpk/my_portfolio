@@ -37,7 +37,7 @@ class PortfoliosController < ApplicationController
   def destroy
     @portfolio_item.destroy
     flash[:notice] = 'Your portfolio item has been deleted'
-    redirect_to portfolios_path
+    redirect_to portfolio_path
   end
 
   private
