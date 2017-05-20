@@ -8,7 +8,7 @@ class PortfoliosController < ApplicationController
   end
 
   def new
-   @portfolio_item = Portfolio.new 
+   @portfolio_item = Portfolio.new
   end
 
   def edit
@@ -38,6 +38,10 @@ class PortfoliosController < ApplicationController
     @portfolio_item.destroy
     flash[:notice] = 'Your portfolio item has been deleted'
     redirect_to portfolio_path
+  end
+
+  def angular
+    @angular_portfolio_items = Portfolio.angular
   end
 
   private
