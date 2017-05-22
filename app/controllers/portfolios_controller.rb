@@ -8,14 +8,15 @@ class PortfoliosController < ApplicationController
   end
 
   def new
-   @portfolio_item = Portfolio.new 
+   @portfolio_item = Portfolio.new
+   3.times { @portfolio_item.technologies.build }
   end
 
   def edit
   end
 
   def create
-    @portfolio_item = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body))
+    @portfolio_item = Portfolio.new(params.require(:portfolio).permit(:title, :subtitle, :body, technologies_attributes: [:name]))
 
     if @portfolio_item.save
       flash[:notice] = 'Your portfolio item is now live'
@@ -38,6 +39,10 @@ class PortfoliosController < ApplicationController
     @portfolio_item.destroy
     flash[:notice] = 'Your portfolio item has been deleted'
     redirect_to portfolio_path
+  end
+
+  def angular
+    @angular_portfolio_items = Portfolio.angular
   end
 
   private
