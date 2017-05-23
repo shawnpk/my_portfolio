@@ -1,5 +1,5 @@
 class Portfolio < ApplicationRecord
-  extend FriendlyId
+  # extend FriendlyId
   include Placeholder
 
   has_many :technologies
@@ -13,7 +13,7 @@ class Portfolio < ApplicationRecord
   validates :main_image, presence: true
   validates :thumb_image, presence: true
 
-  friendly_id :title, use: :slugged
+  # friendly_id :title, use: :slugged
 
   scope :ruby_on_rails, -> { where(subtitle: 'Ruby on Rails') }
 
