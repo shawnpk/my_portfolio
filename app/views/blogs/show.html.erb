@@ -2,4 +2,6 @@
   <h2><%= @blog.title %></h2>
   <%= link_to 'Edit', edit_blog_path(@blog), class: 'btn btn-sm btn-warning' if logged_in?(:site_admin) %>
   <p><%= @blog.body %></p>
+  <hr>
+  <p><%= link_to "Back to All Blogs", blogs_path, class: 'btn btn-sm btn-primary' %></p>
 </div>
