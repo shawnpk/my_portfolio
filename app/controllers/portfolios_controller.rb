@@ -48,6 +48,14 @@ class PortfoliosController < ApplicationController
     @angular_portfolio_items = Portfolio.angular
   end
 
+  def sort
+    params[:order].each do |key, value|
+      Portfolio.find(value[:id]).update(position: value[:position])
+    end
+
+    head :ok
+  end
+
   private
     def set_portfolio
       # @portfolio_item = Portfolio.friendly.find(params[:id])
