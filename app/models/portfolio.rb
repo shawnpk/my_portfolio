@@ -3,10 +3,14 @@ class Portfolio < ApplicationRecord
   include Placeholder
 
   has_many :technologies, dependent: :destroy
+
+  after_initialize :set_defaults
+
   accepts_nested_attributes_for :technologies,
                                 reject_if: lambda { |attrs| attrs['name'].blank? }
 
-  after_initialize :set_defaults
+  mount_uploader :thumb_image, PortfolioUploader
+  mount_uploader :main_image, PortfolioUploader
 
   validates :title, presence: true
   validates :body, presence: true
